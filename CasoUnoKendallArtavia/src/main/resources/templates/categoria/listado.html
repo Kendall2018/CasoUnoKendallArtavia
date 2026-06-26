@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header th:replace="~{fragmentos :: header}"></header>
+<nav th:replace="~{fragmentos :: navbar}"></nav>
+
+<main class="container mt-4">
+    <h2>Listado de Categorías</h2>
+
+    <div th:if="${todoOk}" class="alert alert-success" th:text="${todoOk}"></div>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+    <form th:action="@{/categoria/guardar}" method="post" class="row g-3 mb-4">
+        <div class="col-md-8">
+            <input type="text" name="nombre" class="form-control" placeholder="Nombre de la categoría" required>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success w-100">Agregar</button>
+        </div>
+    </form>
+
+    <p>Total de categorías: <span th:text="${totalCategorias}"></span></p>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="categoria : ${categorias}">
+                <td th:text="${categoria.id}"></td>
+                <td th:text="${categoria.nombre}"></td>
+                <td>
+                    <a class="btn btn-warning btn-sm"
+                       th:href="@{/categoria/modificar/{idCategoria}(idCategoria=${categoria.id})}">
+                        Modificar
+                    </a>
+                </td>
+                <td>
+                    <form th:action="@{/categoria/eliminar}" method="post">
+                        <input type="hidden" name="idCategoria" th:value="${categoria.id}">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer th:replace="~{fragmentos :: footer}"></footer>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

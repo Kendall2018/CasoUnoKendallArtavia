@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header th:replace="~{fragmentos :: header}"></header>
+<nav th:replace="~{fragmentos :: navbar}"></nav>
+
+<div class="container mt-4">
+
+    <h2>Formulario de Contacto</h2>
+
+    <form th:action="@{/categoria/contacto}" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text"
+                   class="form-control"
+                   name="nombre"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email"
+                   class="form-control"
+                   name="correo"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Asunto</label>
+            <input type="text"
+                   class="form-control"
+                   name="asunto"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Mensaje</label>
+            <textarea class="form-control"
+                      rows="5"
+                      name="mensaje"
+                      required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Enviar
+        </button>
+
+        <a th:href="@{/categoria/inicio}" class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+<footer th:replace="~{fragmentos :: footer}"></footer>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

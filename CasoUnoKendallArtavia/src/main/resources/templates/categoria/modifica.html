@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Categoría</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header th:replace="~{fragmentos :: header}"></header>
+<nav th:replace="~{fragmentos :: navbar}"></nav>
+
+<main class="container mt-4">
+    <h2>Modificar Categoría</h2>
+
+    <form th:action="@{/categoria/guardar}" method="post" th:object="${categoria}">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" th:field="*{nombre}" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a th:href="@{/categoria/listado}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+
+<footer th:replace="~{fragmentos :: footer}"></footer>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
